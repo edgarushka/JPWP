@@ -85,7 +85,6 @@ namespace WindowsFormsApp1
         private void update(object sender, EventArgs e)
         {
             playAnimation();
-
             //currFrame++;
             if (currFrame == 8)
             {
