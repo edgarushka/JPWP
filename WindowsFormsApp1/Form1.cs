@@ -63,7 +63,7 @@ namespace WindowsFormsApp1
             }
             //else if((int)e.KeyData == (int)Keys.Control + (int)Keys.Up)
             //{
-            //    currFrame = 7;
+            //    currFrame = 7;gghjghjghj
             //    MessageBox.Show("Ctrl + Up pressed...");
             //}
             //else if(e.Modifiers==Keys.W && e.KeyCode == Keys.D)
