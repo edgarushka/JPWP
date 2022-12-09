@@ -73,9 +73,29 @@ namespace WindowsFormsApp1.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap black_vehicles {
+        internal static System.Drawing.Bitmap map {
             get {
-                object obj = ResourceManager.GetObject("black_vehicles", resourceCulture);
+                object obj = ResourceManager.GetObject("map", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap map1 {
+            get {
+                object obj = ResourceManager.GetObject("map1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Screenshot_1 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
@@ -37,15 +36,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(372, 138);
+            this.pictureBox1.Location = new System.Drawing.Point(46, 9);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(216, 216);
@@ -54,10 +48,16 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // timer3
+            // 
+            this.timer3.Enabled = true;
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
             // timer2
             // 
             this.timer2.Enabled = true;
             this.timer2.Interval = 10;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick_1);
             // 
             // label1
             // 
@@ -72,7 +72,6 @@
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Untitled_2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.label1);
@@ -80,9 +79,8 @@
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Jazda po mieście";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaint);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -90,13 +88,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer CloudsTimer;
-        private System.IO.FileSystemWatcher fileSystemWatcher1;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer3;
-        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
