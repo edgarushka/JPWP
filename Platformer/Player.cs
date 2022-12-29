@@ -15,13 +15,15 @@ namespace Platformer
         public Size _scale;
         public int currAnimation = 2;
         public int speed;
+
+        
         public Player(Size _scale,int _x,int _y,Image _spriteAnimation)
         {
             this._scale = _scale;
             this._x = _x;
             this._y = _y;
             this._spritesAnimation = _spriteAnimation;
-            speed = 40;
+            speed = 50;
         }
         public void Left()
         {
