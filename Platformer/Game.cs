@@ -28,8 +28,8 @@ namespace Platformer
             InitializeComponent();
 
             money = 10000;
-            playerImg = new Bitmap("D:\\VISUAL PROJECTS\\WindowsFormsApp1\\WindowsFormsApp1\\Resources\\models.png");
-            mapImg = new Bitmap("D:\\VISUAL PROJECTS\\WindowsFormsApp1\\WindowsFormsApp1\\Resources\\map.jpg");
+            playerImg = new Bitmap("D:\\VISUAL PROJECTS\\NFS Not Wanted\\Platformer\\Resources\\models.png");
+            mapImg = new Bitmap("D:\\VISUAL PROJECTS\\NFS Not Wanted\\Platformer\\Resources\\map.jpg");
             player = new Player(new Size(32,75),80,270,playerImg);
             delta = new Point(0, 0);
             map = new int[22, 40]{
