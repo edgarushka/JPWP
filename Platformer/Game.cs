@@ -18,11 +18,16 @@ namespace Platformer
 
         Player player;
 
-        const int width=5120;
-        const int height=2816;
+        const int MapWidth=5120;
+        const int MapHeight=2816;
         public int money;
         int[,] map;
         Point delta;
+
+        private int carWidth = 80;
+        private int carHeight = 216;
+
+
         public Game()
         {
             InitializeComponent();
@@ -56,58 +61,99 @@ namespace Platformer
             { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             };
-            menu_panel.Location = new Point(
-            this.ClientSize.Width / 2 - menu_panel.Size.Width / 2,
-            this.ClientSize.Height / 2 - menu_panel.Size.Height / 2);
+            menuPanel.Location = new Point(
+            this.ClientSize.Width / 2 - menuPanel.Size.Width / 2,
+            this.ClientSize.Height / 2 - menuPanel.Size.Height / 2);
             
         }
-        private void moneyLoss(object sender, EventArgs e)
+        private void MoneyLoss(object sender, EventArgs e)
         {
-            if (map[(player._y + 60) / 128, (player._x + 40) / 128] == 1)
+            if (map[(player.y + 60) / 128, (player.x + 40) / 128] == 1)
             {
                 money -= 2;
             }
-            else if (map[(player._y + 60) / 128, (player._x + 40) / 128] == 2)
+            else if (map[(player.y + 60) / 128, (player.x + 40) / 128] == 2)
             {
-                pause();
-                win Win = new win();
-                Win.Show();
+                Pause();
+                Win win = new Win(money);
+                win.Show();
             }
         }
-        private void updMovement(object sender, EventArgs e)
+        private void UpdateMovement(object sender, EventArgs e)
         {
             this.Invalidate();
             label2.Text = delta.X.ToString();
-            label3.Text = player._x.ToString();
-            label6.Text = player._y.ToString();
+            label3.Text = player.x.ToString();
+            label6.Text = player.y.ToString();
             label1.Text = player.speed.ToString();
-            money_label.Text = money.ToString();
+            moneyLabel.Text = money.ToString();
         }
 
         private void CreateMap(Graphics gr)
         {
-            gr.DrawImage(mapImg, delta.X, delta.Y, width, height);
-        }
-        private void PlayAnimation(Graphics gr)
-        {
-                if (player.currAnimation == 0)
-                {
-                    gr.DrawImage(player._spritesAnimation, player._x + delta.X, player._y + delta.Y, new Rectangle(new Point(68, 0), new Size(80, 216)), GraphicsUnit.Pixel);
-                }
-                else if (player.currAnimation == 6)
-                {
-                    gr.DrawImage(player._spritesAnimation, player._x + delta.X, player._y + delta.Y, new Rectangle(new Point(27 + (216 * player.currAnimation), 68), new Size(216, 80)), GraphicsUnit.Pixel);
-                }
-                else if (player.currAnimation == 2)
-                {
-                    gr.DrawImage(player._spritesAnimation, player._x + delta.X, player._y + delta.Y, new Rectangle(new Point(27 + (216 * player.currAnimation), 68), new Size(216, 80)), GraphicsUnit.Pixel);
-                }
-                else if (player.currAnimation == 4)
-                {
-                    gr.DrawImage(player._spritesAnimation, player._x + delta.X, player._y + delta.Y, new Rectangle(new Point(68 + 216 * player.currAnimation, 0), new Size(80, 216)), GraphicsUnit.Pixel);
-                }
+            gr.DrawImage(mapImg, delta.X, delta.Y, MapWidth, MapHeight);
         }
         
+        private void PlayAnimation(Graphics gr)
+        {
+            // delta is speed offset
+            
+
+            var carPositionX = player.x + delta.X;
+            var carPositionY = player.y + delta.Y;
+
+            // (carPositionX, carPositionY) = AdjustPosition((carPositionX, carPositionY), player.PrevAnimation, player.CurrAnimation);
+
+            if (player.CurrAnimation == AnimationPosition.Up)
+            {                
+                gr.DrawImage(player.spritesAnimation, carPositionX, carPositionY, new Rectangle(new Point(68, 0), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
+            }
+            else if (player.CurrAnimation == AnimationPosition.Left)
+            {
+                gr.DrawImage(player.spritesAnimation, carPositionX, carPositionY, new Rectangle(new Point(27 + (carHeight * (int)player.CurrAnimation), 68), new Size(carHeight, carWidth)), GraphicsUnit.Pixel);
+            }
+            else if (player.CurrAnimation == AnimationPosition.Right)
+            {
+                gr.DrawImage(player.spritesAnimation, carPositionX, carPositionY, new Rectangle(new Point(27 + (carHeight * (int)player.CurrAnimation), 68), new Size(carHeight, carWidth)), GraphicsUnit.Pixel);
+            }
+            else if (player.CurrAnimation == AnimationPosition.Down)
+            {
+                gr.DrawImage(player.spritesAnimation, carPositionX, carPositionY, new Rectangle(new Point(68 + carHeight * (int)player.CurrAnimation, 0), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
+            }
+        }
+
+        private (int x, int y) AdjustPosition((int x, int y) position, AnimationPosition prev, AnimationPosition actual)
+        {
+            var adjustedPosition = position;
+
+            if(prev == AnimationPosition.Left && actual == AnimationPosition.Up)
+            {
+                adjustedPosition.x = position.x - carHeight / 2;
+                adjustedPosition.y = position.y - carWidth / 2;
+            }
+            else if(prev == AnimationPosition.Left && actual == AnimationPosition.Down)
+            {
+                adjustedPosition.x = position.x + carHeight / 2;
+                adjustedPosition.y = position.y - carWidth / 2;
+            }
+            else if(prev == AnimationPosition.Right && actual == AnimationPosition.Up)
+            {
+                adjustedPosition.x = position.x + carHeight / 2;
+                adjustedPosition.y = position.y - carWidth / 2;
+            }
+            else if(prev == AnimationPosition.Right && actual == AnimationPosition.Down)
+            {
+                adjustedPosition.x = position.x + carHeight / 2;
+                adjustedPosition.y = position.y + carWidth / 2;
+            }
+            else
+            {
+                adjustedPosition = position;
+            }
+
+            return adjustedPosition;
+        }
+
         private void OnPaint(object sender, PaintEventArgs e)
         {
             Graphics gr = e.Graphics;
@@ -116,43 +162,41 @@ namespace Platformer
             PlayAnimation(gr);
         }
 
-
-        private void start_box_Click(object sender, EventArgs e)
-        {
-            menu_panel.Hide();
-            pause();
-            
-        }
-        private void pause()
+        private void Pause()
         {
             if (timer1.Enabled == true)
             {
-                this.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.Game_KeyDown);
+                this.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.GameKeyDown);
                 timer3.Enabled = false;
                 timer2.Enabled = false;
                 timer1.Enabled = false;
             }
             else if (timer1.Enabled == false)
             {
-                this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Game_KeyDown);
+                this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameKeyDown);
                 timer3.Enabled = Enabled;
                 timer2.Enabled = Enabled;
                 timer1.Enabled = Enabled;
             }
         }
+        private void StartBoxClick(object sender, EventArgs e)
+        {
+            menuPanel.Hide();
+            Pause();
+        }
 
-        private void Game_KeyDown(object sender, KeyEventArgs e)
+        private void GameKeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode.ToString())
             {
                 case "D":
-                    player.currAnimation = 2;
+                    player.CurrAnimation = AnimationPosition.Right;
 
-                    if (player._x < width - Width / 2)
+                    if (player.x < MapWidth - base.Width / 2)
                     {
                         player.Right();
 
-                        if (player._x >= Width / 2)
+                        if (player.x >= base.Width / 2)
                         {
                             delta.X -= player.speed;
                         }
@@ -160,11 +204,11 @@ namespace Platformer
                     }
                     break;
                 case "A":
-                    player.currAnimation = 6;
+                    player.CurrAnimation = AnimationPosition.Left;
 
-                    if (player._x > 0)
+                    if (player.x > 0)
                     {
-                        if (player._x >= Width / 2 && player._x < width - Width / 2)
+                        if (player.x >= base.Width / 2 && player.x < MapWidth - base.Width / 2)
                         {
                             delta.X += player.speed;
                         }
@@ -172,23 +216,23 @@ namespace Platformer
                     }
                     break;
                 case "W":
-                    player.currAnimation = 0;
+                    player.CurrAnimation = AnimationPosition.Up;
 
-                    if (player._y > 0)
+                    if (player.y > 0)
                     {
                         player.Up();
 
-                        if (player._y > Height / 2 && player._y < height - Height / 2)
+                        if (player.y > Height / 2 && player.y < MapHeight - Height / 2)
                         {
                             delta.Y += player.speed;
                         }
                     }
                     break;
                 case "S":
-                    player.currAnimation = 4;
-                    if (player._y < height - Height / 2)
+                    player.CurrAnimation = AnimationPosition.Down;
+                    if (player.y < MapHeight - Height / 2)
                     {
-                        if (player._y > Height / 2)
+                        if (player.y > Height / 2)
                         {
                             delta.Y -= player.speed;
                         }
@@ -198,55 +242,10 @@ namespace Platformer
             }
             if (e.KeyCode == Keys.Escape)
             {
-                menu_panel.Show();
+                menuPanel.Show();
 
-                pause();
+                Pause();
             }
-        }
-
-        private void start_box_MouseHover(object sender, EventArgs e)
-        {
-            start_box.Image = Properties.Resources.start_hover;
-        }
-
-        private void option_box_MouseHover(object sender, EventArgs e)
-        {
-            option_box.Image = Properties.Resources.option_hover;
-        }
-
-        private void exit_box_MouseHover(object sender, EventArgs e)
-        {
-            exit_box.Image = Properties.Resources.exit_hover;
-        }
-
-        private void zasady_box_MouseHover(object sender, EventArgs e)
-        {
-            zasady_box.Image = Properties.Resources.zasady_hover;
-        }
-
-        private void start_box_MouseLeave(object sender, EventArgs e)
-        {
-            start_box.Image = Properties.Resources.start_normal;
-        }
-
-        private void option_box_MouseLeave(object sender, EventArgs e)
-        {
-            option_box.Image = Properties.Resources.option_normal;
-        }
-
-        private void exit_box_MouseLeave(object sender, EventArgs e)
-        {
-            exit_box.Image = Properties.Resources.exit_normal;
-        }
-
-        private void zasady_box_MouseLeave(object sender, EventArgs e)
-        {
-            zasady_box.Image = Properties.Resources.zasady_normal;
-        }
-
-        private void exit_box_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -259,16 +258,9 @@ namespace Platformer
 
         }
 
-        private void Game_Load(object sender, EventArgs e)
+        private void GameLoad(object sender, EventArgs e)
         {
 
         }
-
-        private void zasady_box_Click(object sender, EventArgs e)
-        {
-            Zasady zasady_menu = new Zasady();
-            zasady_menu.Show();
-        }
-
     }
 }

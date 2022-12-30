@@ -35,14 +35,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.money_label = new System.Windows.Forms.Label();
+            this.moneyLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.menu_panel = new System.Windows.Forms.Panel();
+            this.menuPanel = new System.Windows.Forms.Panel();
             this.zasady_box = new System.Windows.Forms.PictureBox();
             this.exit_box = new System.Windows.Forms.PictureBox();
             this.option_box = new System.Windows.Forms.PictureBox();
             this.start_box = new System.Windows.Forms.PictureBox();
-            this.menu_panel.SuspendLayout();
+            this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zasady_box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exit_box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.option_box)).BeginInit();
@@ -51,12 +51,12 @@
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.moneyLoss);
+            this.timer1.Tick += new System.EventHandler(this.MoneyLoss);
             // 
             // timer2
             // 
             this.timer2.Interval = 10;
-            this.timer2.Tick += new System.EventHandler(this.updMovement);
+            this.timer2.Tick += new System.EventHandler(this.UpdateMovement);
             // 
             // timer3
             // 
@@ -93,19 +93,19 @@
             // 
             // money_label
             // 
-            this.money_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.money_label.AutoSize = true;
-            this.money_label.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.money_label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.money_label.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.money_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.money_label.ForeColor = System.Drawing.Color.Green;
-            this.money_label.Location = new System.Drawing.Point(1099, 53);
-            this.money_label.Name = "money_label";
-            this.money_label.Size = new System.Drawing.Size(130, 44);
-            this.money_label.TabIndex = 3;
-            this.money_label.Text = "10000";
-            this.money_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.moneyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.moneyLabel.AutoSize = true;
+            this.moneyLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.moneyLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.moneyLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.moneyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.moneyLabel.ForeColor = System.Drawing.Color.Green;
+            this.moneyLabel.Location = new System.Drawing.Point(1099, 53);
+            this.moneyLabel.Name = "money_label";
+            this.moneyLabel.Size = new System.Drawing.Size(130, 44);
+            this.moneyLabel.TabIndex = 3;
+            this.moneyLabel.Text = "10000";
+            this.moneyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
@@ -118,19 +118,19 @@
             // 
             // menu_panel
             // 
-            this.menu_panel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.menu_panel.BackColor = System.Drawing.Color.SeaShell;
-            this.menu_panel.BackgroundImage = global::Platformer.Properties.Resources.menu;
-            this.menu_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.menu_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.menu_panel.Controls.Add(this.zasady_box);
-            this.menu_panel.Controls.Add(this.exit_box);
-            this.menu_panel.Controls.Add(this.option_box);
-            this.menu_panel.Controls.Add(this.start_box);
-            this.menu_panel.Location = new System.Drawing.Point(440, 90);
-            this.menu_panel.Name = "menu_panel";
-            this.menu_panel.Size = new System.Drawing.Size(400, 500);
-            this.menu_panel.TabIndex = 6;
+            this.menuPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.menuPanel.BackColor = System.Drawing.Color.SeaShell;
+            this.menuPanel.BackgroundImage = global::Platformer.Properties.Resources.menu;
+            this.menuPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.menuPanel.Controls.Add(this.zasady_box);
+            this.menuPanel.Controls.Add(this.exit_box);
+            this.menuPanel.Controls.Add(this.option_box);
+            this.menuPanel.Controls.Add(this.start_box);
+            this.menuPanel.Location = new System.Drawing.Point(440, 90);
+            this.menuPanel.Name = "menu_panel";
+            this.menuPanel.Size = new System.Drawing.Size(400, 500);
+            this.menuPanel.TabIndex = 6;
             // 
             // zasady_box
             // 
@@ -142,9 +142,9 @@
             this.zasady_box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.zasady_box.TabIndex = 3;
             this.zasady_box.TabStop = false;
-            this.zasady_box.Click += new System.EventHandler(this.zasady_box_Click);
-            this.zasady_box.MouseLeave += new System.EventHandler(this.zasady_box_MouseLeave);
-            this.zasady_box.MouseHover += new System.EventHandler(this.zasady_box_MouseHover);
+            this.zasady_box.Click += new System.EventHandler(Buttons.ZasadyBoxClick);
+            this.zasady_box.MouseLeave += new System.EventHandler(Buttons.ZasadyBoxMouseLeave);
+            this.zasady_box.MouseHover += new System.EventHandler(Buttons.ZasadyBoxMouseHover);
             // 
             // exit_box
             // 
@@ -156,9 +156,9 @@
             this.exit_box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.exit_box.TabIndex = 2;
             this.exit_box.TabStop = false;
-            this.exit_box.Click += new System.EventHandler(this.exit_box_Click);
-            this.exit_box.MouseLeave += new System.EventHandler(this.exit_box_MouseLeave);
-            this.exit_box.MouseHover += new System.EventHandler(this.exit_box_MouseHover);
+            this.exit_box.Click += new System.EventHandler(Buttons.ExitBoxClick);
+            this.exit_box.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
+            this.exit_box.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
             // 
             // option_box
             // 
@@ -170,8 +170,8 @@
             this.option_box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.option_box.TabIndex = 1;
             this.option_box.TabStop = false;
-            this.option_box.MouseLeave += new System.EventHandler(this.option_box_MouseLeave);
-            this.option_box.MouseHover += new System.EventHandler(this.option_box_MouseHover);
+            this.option_box.MouseLeave += new System.EventHandler(Buttons.OptionBoxMouseLeave);
+            this.option_box.MouseHover += new System.EventHandler(Buttons.OptionBoxMouseHover);
             // 
             // start_box
             // 
@@ -183,9 +183,9 @@
             this.start_box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.start_box.TabIndex = 0;
             this.start_box.TabStop = false;
-            this.start_box.Click += new System.EventHandler(this.start_box_Click);
-            this.start_box.MouseLeave += new System.EventHandler(this.start_box_MouseLeave);
-            this.start_box.MouseHover += new System.EventHandler(this.start_box_MouseHover);
+            this.start_box.Click += new System.EventHandler(this.StartBoxClick);
+            this.start_box.MouseLeave += new System.EventHandler(Buttons.StartBoxMouseLeave);
+            this.start_box.MouseHover += new System.EventHandler(Buttons.StartBoxMouseHover);
             // 
             // Game
             // 
@@ -193,9 +193,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1262, 673);
-            this.Controls.Add(this.menu_panel);
+            this.Controls.Add(this.menuPanel);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.money_label);
+            this.Controls.Add(this.moneyLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
@@ -203,9 +203,9 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Game";
             this.Text = "Need For Speed Not Wanted";
-            this.Load += new System.EventHandler(this.Game_Load);
+            this.Load += new System.EventHandler(this.GameLoad);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaint);
-            this.menu_panel.ResumeLayout(false);
+            this.menuPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.zasady_box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exit_box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.option_box)).EndInit();
@@ -222,9 +222,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label money_label;
+        private System.Windows.Forms.Label moneyLabel;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel menu_panel;
+        private System.Windows.Forms.Panel menuPanel;
         private System.Windows.Forms.PictureBox start_box;
         private System.Windows.Forms.PictureBox exit_box;
         private System.Windows.Forms.PictureBox option_box;

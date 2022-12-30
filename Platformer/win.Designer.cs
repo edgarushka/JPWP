@@ -1,6 +1,6 @@
 ﻿namespace Platformer
 {
-    partial class win
+    partial class Win
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.win_label = new System.Windows.Forms.Label();
+            this.winLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -43,19 +43,19 @@
             // 
             // win_label
             // 
-            this.win_label.AutoSize = true;
-            this.win_label.Location = new System.Drawing.Point(252, 110);
-            this.win_label.Name = "win_label";
-            this.win_label.Size = new System.Drawing.Size(44, 16);
-            this.win_label.TabIndex = 1;
-            this.win_label.Text = "label2";
+            this.winLabel.AutoSize = true;
+            this.winLabel.Location = new System.Drawing.Point(252, 110);
+            this.winLabel.Name = "win_label";
+            this.winLabel.Size = new System.Drawing.Size(44, 16);
+            this.winLabel.TabIndex = 1;
+            this.winLabel.Text = "label2";
             // 
             // win
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.win_label);
+            this.Controls.Add(this.winLabel);
             this.Controls.Add(this.label1);
             this.Name = "win";
             this.ShowIcon = false;
@@ -70,6 +70,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label win_label;
+        private System.Windows.Forms.Label winLabel;
     }
 }

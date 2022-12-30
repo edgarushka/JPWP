@@ -10,43 +10,57 @@ namespace Platformer
 {
     class Player
     {
-        public Image _spritesAnimation;
-        public int _x, _y;
-        public Size _scale;
-        public int currAnimation = 2;
-        public int speed;
+        public Image spritesAnimation;
+        public int x, y;
+        public Size scale;
+        private AnimationPosition currAnimation = AnimationPosition.Right;
+        private AnimationPosition prevAnimation = AnimationPosition.Right;
+        public int speed = 10;
+
+        // Properties c#
+        public AnimationPosition CurrAnimation { 
+            get => currAnimation;
+            set{
+                prevAnimation = currAnimation;
+                currAnimation = value;
+            }
+        }
+
+        public AnimationPosition PrevAnimation {
+            get => prevAnimation;
+            private set => prevAnimation = value;
+        }
 
         
-        public Player(Size _scale,int _x,int _y,Image _spriteAnimation)
+        public Player(Size _scale,int x,int y,Image spriteAnimation)
         {
-            this._scale = _scale;
-            this._x = _x;
-            this._y = _y;
-            this._spritesAnimation = _spriteAnimation;
-            speed = 50;
+            this.scale = _scale;
+            this.x = x;
+            this.y = y;
+            this.spritesAnimation = spriteAnimation;
         }
         public void Left()
         {
            
-            _x -= speed;
+            x -= speed;
             //playerPic.Location = new Point(playerPic.Location.X - 1, playerPic.Location.Y);
         }
 
         public void Right()
         {
-            _x += speed;            
+            x += speed;            
             //playerPic.Location = new Point(playerPic.Location.X + 1, playerPic.Location.Y);
         }
 
         public void Up()
         {
-            _y -= speed;
+            y -= speed;
             //playerPic.Location = new Point(playerPic.Location.X , playerPic.Location.Y-1);
         }
 
         public void Down()
         {
-            _y += speed;
+            y += speed;
             //playerPic.Location = new Point(playerPic.Location.X, playerPic.Location.Y+1);
         }
     }

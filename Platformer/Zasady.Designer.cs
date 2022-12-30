@@ -6,6 +6,7 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        
 
         /// <summary>
         /// Clean up any resources being used.
@@ -28,36 +29,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menu_panel = new System.Windows.Forms.Panel();
-            this.exit_box = new System.Windows.Forms.PictureBox();
-            this.menu_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.exit_box)).BeginInit();
+            this.menuPanel = new System.Windows.Forms.Panel();
+            this.exitBox = new System.Windows.Forms.PictureBox();
+            this.menuPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.exitBox)).BeginInit();
             this.SuspendLayout();
             // 
             // menu_panel
             // 
-            this.menu_panel.BackColor = System.Drawing.Color.SeaShell;
-            this.menu_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.menu_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.menu_panel.Controls.Add(this.exit_box);
-            this.menu_panel.Location = new System.Drawing.Point(1, 0);
-            this.menu_panel.Name = "menu_panel";
-            this.menu_panel.Size = new System.Drawing.Size(890, 500);
-            this.menu_panel.TabIndex = 7;
+            this.menuPanel.BackColor = System.Drawing.Color.SeaShell;
+            this.menuPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.menuPanel.Controls.Add(this.exitBox);
+            this.menuPanel.Location = new System.Drawing.Point(1, 0);
+            this.menuPanel.Name = "menu_panel";
+            this.menuPanel.Size = new System.Drawing.Size(890, 500);
+            this.menuPanel.TabIndex = 7;
             // 
             // exit_box
             // 
-            this.exit_box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.exit_box.Image = global::Platformer.Properties.Resources.exit_normal;
-            this.exit_box.Location = new System.Drawing.Point(366, 414);
-            this.exit_box.Name = "exit_box";
-            this.exit_box.Size = new System.Drawing.Size(150, 64);
-            this.exit_box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.exit_box.TabIndex = 2;
-            this.exit_box.TabStop = false;
-            this.exit_box.Click += new System.EventHandler(this.exit_box_zasady_Click);
-            this.exit_box.MouseLeave += new System.EventHandler(this.exit_box_MouseLeave);
-            this.exit_box.MouseHover += new System.EventHandler(this.exit_box_MouseHover);
+            this.exitBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.exitBox.Image = global::Platformer.Properties.Resources.exit_normal;
+            this.exitBox.Location = new System.Drawing.Point(366, 414);
+            this.exitBox.Name = "exit_box";
+            this.exitBox.Size = new System.Drawing.Size(150, 64);
+            this.exitBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.exitBox.TabIndex = 2;
+            this.exitBox.TabStop = false;
+            this.exitBox.Click += new System.EventHandler(this.exitBoxClick);
+            this.exitBox.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
+            this.exitBox.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
             // 
             // Zasady
             // 
@@ -65,22 +66,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(898, 503);
-            this.Controls.Add(this.menu_panel);
+            this.Controls.Add(this.menuPanel);
             this.DoubleBuffered = true;
             this.Name = "Zasady";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ZASADY";
-            this.menu_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.exit_box)).EndInit();
+            this.menuPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.exitBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel menu_panel;
-        private System.Windows.Forms.PictureBox exit_box;
+        private System.Windows.Forms.Panel menuPanel;
+        private System.Windows.Forms.PictureBox exitBox;
     }
 }

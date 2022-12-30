@@ -10,17 +10,18 @@ using System.Windows.Forms;
 
 namespace Platformer
 {
-    public partial class win : Form
+    public partial class Win : Form
     {
-        public win()
+        private int money;
+        public Win(int money)
         {
+            this.money = money;
             InitializeComponent();
         }
-
         private void win_Load(object sender, EventArgs e)
         {
-            Game game = new Game();
-            win_label.Text = "You won with "+game.money+"$";
+            
+            winLabel.Text = "You won with "+money+"$";
         }
 
     }
