@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Platformer
@@ -72,6 +64,11 @@ namespace Platformer
         {
             Zasady zasady_menu = new Zasady();
             zasady_menu.Show();
+        }
+        public static void OptionsBoxClick(object sender, EventArgs e)
+        {
+            Options options = new Options();
+            options.Show();
         }
 
     }

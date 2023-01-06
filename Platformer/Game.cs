@@ -1,25 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Platformer
 {
     public partial class Game : Form
     { 
-        Image playerImg;
+
+        Image carsImg;
         Bitmap mapImg;
 
         Player player;
 
         const int MapWidth=5120;
         const int MapHeight=2816;
+        const int CarSizePixel = 128;
         public int money;
         int[,] map;
         Point delta;
@@ -27,15 +22,16 @@ namespace Platformer
         private int carWidth = 80;
         private int carHeight = 216;
 
-
         public Game()
         {
             InitializeComponent();
 
             money = 10000;
-            playerImg = new Bitmap("D:\\VISUAL PROJECTS\\NFS Not Wanted\\Platformer\\Resources\\models.png");
-            mapImg = new Bitmap("D:\\VISUAL PROJECTS\\NFS Not Wanted\\Platformer\\Resources\\map.jpg");
-            player = new Player(new Size(32,75),80,270,playerImg);
+            string workingDirectory = Environment.CurrentDirectory;
+
+            carsImg = new Bitmap(@"D:\VISUAL PROJECTS\NFS Not Wanted\Platformer\Resources\models.png");
+            mapImg = new Bitmap(global::Platformer.Properties.Resources.map) ;
+            player = new Player(new Size(32,75),80,270,carsImg);
             delta = new Point(0, 0);
             map = new int[22, 40]{
             { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
@@ -68,15 +64,20 @@ namespace Platformer
         }
         private void MoneyLoss(object sender, EventArgs e)
         {
-            if (map[(player.y + 60) / 128, (player.x + 40) / 128] == 1)
+            if (map[(player.y+carWidth) / CarSizePixel, (player.x+carWidth) / CarSizePixel] == 1)
             {
                 money -= 2;
+                AlertGrass.Visible = true;
             }
-            else if (map[(player.y + 60) / 128, (player.x + 40) / 128] == 2)
+            else if (map[(player.y) / CarSizePixel, (player.x+carWidth) / CarSizePixel] == 2)
             {
                 Pause();
                 Win win = new Win(money);
                 win.Show();
+            }
+            else
+            {
+                AlertGrass.Visible = false;
             }
         }
         private void UpdateMovement(object sender, EventArgs e)
@@ -102,7 +103,7 @@ namespace Platformer
             var carPositionX = player.x + delta.X;
             var carPositionY = player.y + delta.Y;
 
-            // (carPositionX, carPositionY) = AdjustPosition((carPositionX, carPositionY), player.PrevAnimation, player.CurrAnimation);
+            (carPositionX, carPositionY) = AdjustPosition((carPositionX, carPositionY));
 
             if (player.CurrAnimation == AnimationPosition.Up)
             {                
@@ -122,29 +123,19 @@ namespace Platformer
             }
         }
 
-        private (int x, int y) AdjustPosition((int x, int y) position, AnimationPosition prev, AnimationPosition actual)
+        private (int x, int y) AdjustPosition((int x, int y) position)
         {
             var adjustedPosition = position;
 
-            if(prev == AnimationPosition.Left && actual == AnimationPosition.Up)
+            if(player.CurrAnimation == AnimationPosition.Up)
             {
-                adjustedPosition.x = position.x - carHeight / 2;
-                adjustedPosition.y = position.y - carWidth / 2;
+                adjustedPosition.x = position.x + carWidth / 2;
+                adjustedPosition.y = position.y - carHeight / 2;
             }
-            else if(prev == AnimationPosition.Left && actual == AnimationPosition.Down)
+            else if(player.CurrAnimation == AnimationPosition.Down)
             {
-                adjustedPosition.x = position.x + carHeight / 2;
-                adjustedPosition.y = position.y - carWidth / 2;
-            }
-            else if(prev == AnimationPosition.Right && actual == AnimationPosition.Up)
-            {
-                adjustedPosition.x = position.x + carHeight / 2;
-                adjustedPosition.y = position.y - carWidth / 2;
-            }
-            else if(prev == AnimationPosition.Right && actual == AnimationPosition.Down)
-            {
-                adjustedPosition.x = position.x + carHeight / 2;
-                adjustedPosition.y = position.y + carWidth / 2;
+                adjustedPosition.x = position.x + carWidth / 2;
+                adjustedPosition.y = position.y - carHeight / 2;
             }
             else
             {
@@ -259,6 +250,21 @@ namespace Platformer
         }
 
         private void GameLoad(object sender, EventArgs e)
+        {
+
+        }
+
+        private void zasady_box_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AlertGrass_Click(object sender, EventArgs e)
         {
 
         }

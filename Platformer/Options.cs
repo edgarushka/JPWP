@@ -3,10 +3,9 @@ using System.Windows.Forms;
 
 namespace Platformer
 {
-    public partial class Zasady : Form
+    public partial class Options : Form
     {
-        
-        public Zasady()
+        public Options()
         {
             InitializeComponent();
         }
