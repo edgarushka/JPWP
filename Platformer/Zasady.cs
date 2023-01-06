@@ -11,7 +11,7 @@ namespace Platformer
             InitializeComponent();
         }
 
-        private void exitBoxClick(object sender, EventArgs e)
+        private void ExitBoxClick(object sender, EventArgs e)
         {
             this.Close();
         }

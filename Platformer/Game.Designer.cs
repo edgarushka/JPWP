@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.EnemySpeedTimer = new System.Windows.Forms.Timer(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -61,9 +61,10 @@
             this.timer2.Interval = 10;
             this.timer2.Tick += new System.EventHandler(this.UpdateMovement);
             // 
-            // timer3
+            // EnemySpeedTimer
             // 
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            this.EnemySpeedTimer.Interval = 50;
+            this.EnemySpeedTimer.Tick += new System.EventHandler(this.EnemySpeedTimer_Tick);
             // 
             // label2
             // 
@@ -93,7 +94,7 @@
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "label3";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
             // moneyLabel
             // 
@@ -150,9 +151,6 @@
             this.zasady_box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.zasady_box.TabIndex = 3;
             this.zasady_box.TabStop = false;
-            this.zasady_box.Click += new System.EventHandler(Buttons.ZasadyBoxClick);
-            this.zasady_box.MouseLeave += new System.EventHandler(Buttons.ZasadyBoxMouseLeave);
-            this.zasady_box.MouseHover += new System.EventHandler(Buttons.ZasadyBoxMouseHover);
             // 
             // exit_box
             // 
@@ -165,9 +163,6 @@
             this.exit_box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.exit_box.TabIndex = 2;
             this.exit_box.TabStop = false;
-            this.exit_box.Click += new System.EventHandler(Buttons.ExitBoxClick);
-            this.exit_box.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
-            this.exit_box.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
             // 
             // option_box
             // 
@@ -180,10 +175,6 @@
             this.option_box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.option_box.TabIndex = 1;
             this.option_box.TabStop = false;
-            this.option_box.Click += new System.EventHandler(Buttons.OptionsBoxClick);
-            this.option_box.MouseLeave += new System.EventHandler(Buttons.OptionBoxMouseLeave);
-            this.option_box.MouseHover += new System.EventHandler(Buttons.OptionBoxMouseHover);
-
             // 
             // start_box
             // 
@@ -197,8 +188,6 @@
             this.start_box.TabIndex = 0;
             this.start_box.TabStop = false;
             this.start_box.Click += new System.EventHandler(this.StartBoxClick);
-            this.start_box.MouseLeave += new System.EventHandler(Buttons.StartBoxMouseLeave);
-            this.start_box.MouseHover += new System.EventHandler(Buttons.StartBoxMouseHover);
             // 
             // EscMenu
             // 
@@ -279,7 +268,7 @@
         #endregion
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Timer EnemySpeedTimer;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;

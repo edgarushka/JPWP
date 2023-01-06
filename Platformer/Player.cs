@@ -2,13 +2,12 @@
 
 namespace Platformer
 {
-    class Player
+    public class Player
     {
         public Image spritesAnimation;
         public int x, y;
         public Size scale;
         private AnimationPosition currAnimation = AnimationPosition.Right;
-        public int speed = 10;
 
         // Properties c#
         public AnimationPosition CurrAnimation { 
@@ -28,25 +27,25 @@ namespace Platformer
         public void Left()
         {
            
-            x -= speed;
+            x -= Game.Speed;
             //playerPic.Location = new Point(playerPic.Location.X - 1, playerPic.Location.Y);
         }
 
         public void Right()
         {
-            x += speed;            
+            x += Game.Speed;            
             //playerPic.Location = new Point(playerPic.Location.X + 1, playerPic.Location.Y);
         }
 
         public void Up()
         {
-            y -= speed;
+            y -= Game.Speed;
             //playerPic.Location = new Point(playerPic.Location.X , playerPic.Location.Y-1);
         }
 
         public void Down()
         {
-            y += speed;
+            y += Game.Speed;
             //playerPic.Location = new Point(playerPic.Location.X, playerPic.Location.Y+1);
         }
     }

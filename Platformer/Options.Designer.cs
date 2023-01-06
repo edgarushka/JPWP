@@ -57,7 +57,7 @@
             this.exitBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.exitBox.TabIndex = 2;
             this.exitBox.TabStop = false;
-            this.exitBox.Click += new System.EventHandler(this.exitBoxClick);
+            this.exitBox.Click += new System.EventHandler(this.ExitBoxClick);
             this.exitBox.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
             this.exitBox.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
             // 
