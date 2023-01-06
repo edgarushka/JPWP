@@ -28,6 +28,17 @@ namespace Platformer
         public Game()
         {
             InitializeComponent();
+            this.exit_box.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
+            this.exit_box.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
+            this.exit_box.Click += new System.EventHandler(Buttons.ExitBoxClick);
+            this.start_box.MouseHover += new System.EventHandler(Buttons.StartBoxMouseHover);
+            this.start_box.MouseLeave += new System.EventHandler(Buttons.StartBoxMouseLeave);
+            this.option_box.MouseHover += new System.EventHandler(Buttons.OptionBoxMouseHover);
+            this.option_box.MouseLeave += new System.EventHandler(Buttons.OptionBoxMouseLeave);
+            this.option_box.Click += new System.EventHandler(Buttons.OptionsBoxClick);
+            this.zasady_box.MouseHover += new System.EventHandler(Buttons.ZasadyBoxMouseHover);
+            this.zasady_box.MouseLeave += new System.EventHandler(Buttons.ZasadyBoxMouseLeave);
+            this.zasady_box.Click += new System.EventHandler(Buttons.ZasadyBoxClick);
 
             money = 10000;
             currY = 0;
