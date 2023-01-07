@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace Platformer
 {
     public partial class Game : Form
-    { 
+    {
 
         Image carsImg;
         Bitmap mapImg;
@@ -14,8 +14,8 @@ namespace Platformer
         PictureBox[] carEnemy;
 
         public const int Speed = 30;
-        const int MapWidth=5120;
-        const int MapHeight=2816;
+        const int MapWidth = 5120;
+        const int MapHeight = 2816;
         const int SectionSizePixel = 128;
         public int money;
         public int currY;
@@ -28,17 +28,17 @@ namespace Platformer
         public Game()
         {
             InitializeComponent();
-            this.exit_box.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
-            this.exit_box.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
-            this.exit_box.Click += new System.EventHandler(Buttons.ExitBoxClick);
-            this.start_box.MouseHover += new System.EventHandler(Buttons.StartBoxMouseHover);
-            this.start_box.MouseLeave += new System.EventHandler(Buttons.StartBoxMouseLeave);
-            this.option_box.MouseHover += new System.EventHandler(Buttons.OptionBoxMouseHover);
-            this.option_box.MouseLeave += new System.EventHandler(Buttons.OptionBoxMouseLeave);
-            this.option_box.Click += new System.EventHandler(Buttons.OptionsBoxClick);
-            this.zasady_box.MouseHover += new System.EventHandler(Buttons.ZasadyBoxMouseHover);
-            this.zasady_box.MouseLeave += new System.EventHandler(Buttons.ZasadyBoxMouseLeave);
-            this.zasady_box.Click += new System.EventHandler(Buttons.ZasadyBoxClick);
+            this.exitBox.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
+            this.exitBox.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
+            this.exitBox.Click += new System.EventHandler(Buttons.ExitBoxClick);
+            this.startBox.MouseHover += new System.EventHandler(Buttons.StartBoxMouseHover);
+            this.startBox.MouseLeave += new System.EventHandler(Buttons.StartBoxMouseLeave);
+            this.optionBox.MouseHover += new System.EventHandler(Buttons.OptionBoxMouseHover);
+            this.optionBox.MouseLeave += new System.EventHandler(Buttons.OptionBoxMouseLeave);
+            this.optionBox.Click += new System.EventHandler(Buttons.OptionsBoxClick);
+            this.zasadyBox.MouseHover += new System.EventHandler(Buttons.ZasadyBoxMouseHover);
+            this.zasadyBox.MouseLeave += new System.EventHandler(Buttons.ZasadyBoxMouseLeave);
+            this.zasadyBox.Click += new System.EventHandler(Buttons.ZasadyBoxClick);
 
             money = 10000;
             currY = 0;
@@ -47,7 +47,7 @@ namespace Platformer
 
             carsImg = Properties.Resources.models;
             mapImg = Properties.Resources.map;
-            player = new Player(new Size(80,270),80,270,carsImg);
+            player = new Player(new Size(80, 270), 80, 270, carsImg);
             delta = new Point(0, 0);
             map = new int[22, 40]{
             { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
@@ -76,16 +76,16 @@ namespace Platformer
             menuPanel.Location = new Point(
             this.ClientSize.Width / 2 - menuPanel.Size.Width / 2,
             this.ClientSize.Height / 2 - menuPanel.Size.Height / 2);
-            
+
         }
         private void MoneyLoss(object sender, EventArgs e)
         {
-            if (map[(player.y+carWidth) / SectionSizePixel, (player.x+carWidth) / SectionSizePixel] == 1)
+            if (map[(player.y + carWidth) / SectionSizePixel, (player.x + carWidth) / SectionSizePixel] == 1)
             {
                 money -= 2;
-                AlertGrass.Visible = true;
+                alertGrass.Visible = true;
             }
-            else if (map[(player.y) / SectionSizePixel, (player.x+carWidth) / SectionSizePixel] == 2)
+            else if (map[(player.y) / SectionSizePixel, (player.x + carWidth) / SectionSizePixel] == 2)
             {
                 Pause();
                 Win win = new Win(money);
@@ -93,7 +93,7 @@ namespace Platformer
             }
             else
             {
-                AlertGrass.Visible = false;
+                alertGrass.Visible = false;
             }
         }
         private void UpdateMovement(object sender, EventArgs e)
@@ -103,19 +103,19 @@ namespace Platformer
             label3.Text = player.x.ToString();
             label6.Text = player.y.ToString();
             label1.Text = Speed.ToString();
-            moneyLabel.Text = money.ToString();
-            
+            moneyLabel.Text = money.ToString() + "$";
+
         }
 
         private void CreateMap(Graphics gr)
         {
             gr.DrawImage(mapImg, delta.X, delta.Y, MapWidth, MapHeight);
         }
-        
+
         private void PlayAnimation(Graphics gr)
         {
             // delta is speed offset
-            
+
 
             var carPositionX = player.x + delta.X;
             var carPositionY = player.y + delta.Y;
@@ -123,7 +123,7 @@ namespace Platformer
             (carPositionX, carPositionY) = AdjustPosition((carPositionX, carPositionY));
 
             if (player.CurrAnimation == AnimationPosition.Up)
-            {                
+            {
                 gr.DrawImage(player.spritesAnimation, carPositionX, carPositionY, new Rectangle(new Point(68, 0), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
             }
             else if (player.CurrAnimation == AnimationPosition.Left)
@@ -160,13 +160,14 @@ namespace Platformer
 
             return adjustedPosition;
         }
-        private void PaintEnemy(Graphics gr, int currY) {
+        private void PaintEnemy(Graphics gr, int currY)
+        {
 
             this.currY = currY;
-            int FirstCarPositionX = 25*SectionSizePixel;
-            int FirstCarPositionY = 21*SectionSizePixel;
+            int FirstCarPositionX = 25 * SectionSizePixel;
+            int FirstCarPositionY = 21 * SectionSizePixel;
             int SecondCarPositionX = 26 * SectionSizePixel;
-            int SecondCarPositionY = 30 * SectionSizePixel;            
+            int SecondCarPositionY = 30 * SectionSizePixel;
             int ThirdCarPositionX = 26 * SectionSizePixel;
             int ThirdCarPositionY = 40 * SectionSizePixel;
 
@@ -198,19 +199,19 @@ namespace Platformer
 
         private void Pause()
         {
-            if (timer1.Enabled == true)
+            if (MoneyTimer.Enabled == true)
             {
                 this.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.GameKeyDown);
                 EnemySpeedTimer.Enabled = false;
-                timer2.Enabled = false;
-                timer1.Enabled = false;
+                MovementTimer.Enabled = false;
+                MoneyTimer.Enabled = false;
             }
-            else if (timer1.Enabled == false)
+            else if (MoneyTimer.Enabled == false)
             {
                 this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameKeyDown);
                 EnemySpeedTimer.Enabled = Enabled;
-                timer2.Enabled = Enabled;
-                timer1.Enabled = Enabled;
+                MovementTimer.Enabled = Enabled;
+                MoneyTimer.Enabled = Enabled;
             }
         }
         private void StartBoxClick(object sender, EventArgs e)

@@ -28,38 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.winLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
-            // 
-            // win_label
+            // winLabel
             // 
             this.winLabel.AutoSize = true;
-            this.winLabel.Location = new System.Drawing.Point(252, 110);
-            this.winLabel.Name = "win_label";
-            this.winLabel.Size = new System.Drawing.Size(44, 16);
+            this.winLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.winLabel.Location = new System.Drawing.Point(65, 129);
+            this.winLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.winLabel.Name = "winLabel";
+            this.winLabel.Size = new System.Drawing.Size(152, 55);
             this.winLabel.TabIndex = 1;
             this.winLabel.Text = "label2";
             // 
-            // win
+            // Win
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.winLabel);
-            this.Controls.Add(this.label1);
-            this.Name = "win";
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "Win";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "YOU WON";
             this.Load += new System.EventHandler(this.win_Load);
             this.ResumeLayout(false);
@@ -68,8 +61,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label winLabel;
     }
 }
