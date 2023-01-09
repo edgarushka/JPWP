@@ -35,39 +35,41 @@
             ((System.ComponentModel.ISupportInitialize)(this.exitBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // menu_panel
+            // menuPanel
             // 
             this.menuPanel.BackColor = System.Drawing.Color.SeaShell;
             this.menuPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.menuPanel.Controls.Add(this.exitBox);
             this.menuPanel.Location = new System.Drawing.Point(1, 0);
-            this.menuPanel.Name = "menu_panel";
-            this.menuPanel.Size = new System.Drawing.Size(890, 500);
+            this.menuPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.menuPanel.Name = "menuPanel";
+            this.menuPanel.Size = new System.Drawing.Size(671, 407);
             this.menuPanel.TabIndex = 7;
             // 
-            // exit_box
+            // exitBox
             // 
             this.exitBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.exitBox.Image = global::Platformer.Properties.Resources.exit_normal;
-            this.exitBox.Location = new System.Drawing.Point(366, 414);
-            this.exitBox.Name = "exit_box";
-            this.exitBox.Size = new System.Drawing.Size(150, 64);
+            this.exitBox.Location = new System.Drawing.Point(274, 336);
+            this.exitBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exitBox.Name = "exitBox";
+            this.exitBox.Size = new System.Drawing.Size(112, 52);
             this.exitBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.exitBox.TabIndex = 2;
             this.exitBox.TabStop = false;
             this.exitBox.Click += new System.EventHandler(this.ExitBoxClick);
-            this.exitBox.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
-            this.exitBox.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
             // 
             // Zasady
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(898, 503);
+            this.ClientSize = new System.Drawing.Size(674, 409);
             this.Controls.Add(this.menuPanel);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Zasady";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

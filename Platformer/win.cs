@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Platformer
@@ -17,11 +10,25 @@ namespace Platformer
         {
             this.money = money;
             InitializeComponent();
+            this.exitBox.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
+            this.exitBox.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
+            this.exitBox.Click += new System.EventHandler(Buttons.ExitBoxClick);
+
+            if (money <= 0)
+            {
+                winLabel.Visible= false;
+                loseLabel.Visible = true;
+            }
+            else
+            {
+                winLabel.Visible = true;
+                loseLabel.Visible = false;
+            }
         }
         private void win_Load(object sender, EventArgs e)
         {
-            
-            winLabel.Text = "You won with "+money+"$";
+            winLabel.Text = "Wygrałeś z " + money + "$!";
+            loseLabel.Text = "FAIL! Spróbuj jeszcze raz";
         }
 
     }

@@ -6,12 +6,11 @@ namespace Platformer
 {
     public partial class Game : Form
     {
-
         Image carsImg;
         Bitmap mapImg;
-
         Player player;
-        PictureBox[] carEnemy;
+        PictureBox[] carEnemyBox;
+        PictureBox carPlayerBox = new PictureBox();
 
         public const int Speed = 30;
         const int MapWidth = 5120;
@@ -20,11 +19,11 @@ namespace Platformer
         public int money;
         public int currY;
         int[,] map;
+
         Point delta;
 
-        private int carWidth = 80;
-        private int carHeight = 216;
-
+        private int carWidth = 111;
+        private int carHeight = 218;
         public Game()
         {
             InitializeComponent();
@@ -43,68 +42,98 @@ namespace Platformer
             money = 10000;
             currY = 0;
 
-            carEnemy = new PictureBox[1];
+            carEnemyBox = new PictureBox[4];
+            for (int i = 0; i < carEnemyBox.Length; i++)
+            {
+                carEnemyBox[i] = new PictureBox();
+                Controls.Add(carEnemyBox[i]);
+                carEnemyBox[i].BackColor = Color.Gray;
+                carEnemyBox[i].Size = new Size(carWidth, carHeight);
+            }
+            carPlayerBox.BackColor = Color.Gray;
+            Controls.Add(carPlayerBox);
 
-            carsImg = Properties.Resources.models;
+
+            carsImg = Properties.Resources.models2;
             mapImg = Properties.Resources.map;
+
             player = new Player(new Size(80, 270), 80, 270, carsImg);
             delta = new Point(0, 0);
+
+            menuPanel.Location = new Point(
+            this.ClientSize.Width / 2 - menuPanel.Size.Width / 2,
+            this.ClientSize.Height / 2 - menuPanel.Size.Height / 2);
+
             map = new int[22, 40]{
-            { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
-            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
-            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
-            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,2,2,1,1,1,1,1,1,1 },
+            { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            { 0,0,0,0,0,0,0,0,0,0,0,3,0,0,3,0,0,3,1,1,3,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
+            { 0,0,0,0,0,0,0,0,0,0,0,3,0,0,3,0,0,3,1,1,3,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
+            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 3,3,3,3,3,3,3,1,1,0,0,1,1,3,3,3,3,3,3,3,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,3,1,1,1,1,1,1,0,0,0,1,1,1,1,2,2,1,1,1,1,1,1,1 },
             { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             };
-            menuPanel.Location = new Point(
-            this.ClientSize.Width / 2 - menuPanel.Size.Width / 2,
-            this.ClientSize.Height / 2 - menuPanel.Size.Height / 2);
 
         }
-        private void MoneyLoss(object sender, EventArgs e)
+        private void MoneyLoss()
         {
-            if (map[(player.y + carWidth) / SectionSizePixel, (player.x + carWidth) / SectionSizePixel] == 1)
+            Win win = new Win(money);
+            if (money > 0)
             {
-                money -= 2;
-                alertGrass.Visible = true;
-            }
-            else if (map[(player.y) / SectionSizePixel, (player.x + carWidth) / SectionSizePixel] == 2)
-            {
-                Pause();
-                Win win = new Win(money);
-                win.Show();
+                if (map[(player.y + carWidth / 2) / SectionSizePixel, (player.x + carWidth) / SectionSizePixel] == 1)
+                {
+                    money -= 100;
+                    alertGrass.Visible = true;
+                }
+                else if (map[(player.y) / SectionSizePixel, (player.x + carWidth) / SectionSizePixel] == 2)
+                {
+                    Pause();
+                    win.Show();
+                }
+                else if (map[(player.y) / SectionSizePixel, (player.x + carWidth) / SectionSizePixel] == 3)
+                {
+                    money -= 500;
+                    wrongSignLabel.Visible = true;
+                }
+                else
+                {
+                    alertGrass.Visible = false;
+                    wrongSignLabel.Visible = false;
+                }
+                for (int i = 0; i < carEnemyBox.Length; i++)
+                {
+                    if (carPlayerBox.Bounds.IntersectsWith(carEnemyBox[i].Bounds))
+                    {
+                        menuPanel.Show();
+                        Pause();
+                    }
+                }
             }
             else
             {
-                alertGrass.Visible = false;
+                Pause();
+                win.Show();
             }
         }
         private void UpdateMovement(object sender, EventArgs e)
         {
             this.Invalidate();
-            label2.Text = delta.X.ToString();
-            label3.Text = player.x.ToString();
-            label6.Text = player.y.ToString();
-            label1.Text = Speed.ToString();
             moneyLabel.Text = money.ToString() + "$";
-
         }
 
         private void CreateMap(Graphics gr)
@@ -112,10 +141,10 @@ namespace Platformer
             gr.DrawImage(mapImg, delta.X, delta.Y, MapWidth, MapHeight);
         }
 
-        private void PlayAnimation(Graphics gr)
+        private void PlayAnimation()
         {
-            // delta is speed offset
-
+            Image leftRightImage = new Bitmap(carHeight, carWidth);
+            Image upDownImage = new Bitmap(carWidth, carHeight);
 
             var carPositionX = player.x + delta.X;
             var carPositionY = player.y + delta.Y;
@@ -124,34 +153,51 @@ namespace Platformer
 
             if (player.CurrAnimation == AnimationPosition.Up)
             {
-                gr.DrawImage(player.spritesAnimation, carPositionX, carPositionY, new Rectangle(new Point(68, 0), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
+                Graphics g = Graphics.FromImage(upDownImage);
+                g.DrawImage(carsImg, 0, 0, new Rectangle(new Point(42, 1), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
+                carPlayerBox.Location = new Point(carPositionX, carPositionY);
+                carPlayerBox.Size = new Size(carWidth, carHeight);
+                carPlayerBox.Image = upDownImage;
             }
             else if (player.CurrAnimation == AnimationPosition.Left)
             {
-                gr.DrawImage(player.spritesAnimation, carPositionX, carPositionY, new Rectangle(new Point(27 + (carHeight * (int)player.CurrAnimation), 68), new Size(carHeight, carWidth)), GraphicsUnit.Pixel);
+                Graphics g = Graphics.FromImage(leftRightImage);
+                g.DrawImage(carsImg, 0, 0, new Rectangle(new Point(((carHeight - 50) * (int)player.CurrAnimation), 42), new Size(carHeight, carWidth)), GraphicsUnit.Pixel);
+                carPlayerBox.Location = new Point(carPositionX, carPositionY);
+                carPlayerBox.Size = new Size(carHeight, carWidth);
+                carPlayerBox.Image = leftRightImage;
             }
             else if (player.CurrAnimation == AnimationPosition.Right)
             {
-                gr.DrawImage(player.spritesAnimation, carPositionX, carPositionY, new Rectangle(new Point(27 + (carHeight * (int)player.CurrAnimation), 68), new Size(carHeight, carWidth)), GraphicsUnit.Pixel);
+                Graphics g = Graphics.FromImage(leftRightImage);
+                g.DrawImage(carsImg, 0, 0, new Rectangle(new Point(((carHeight - 50) * (int)player.CurrAnimation), 42), new Size(carHeight, carWidth)), GraphicsUnit.Pixel);
+                carPlayerBox.Location = new Point(carPositionX, carPositionY);
+                carPlayerBox.Size = new Size(carHeight, carWidth);
+                carPlayerBox.Image = leftRightImage;
             }
             else if (player.CurrAnimation == AnimationPosition.Down)
             {
-                gr.DrawImage(player.spritesAnimation, carPositionX, carPositionY, new Rectangle(new Point(68 + carHeight * (int)player.CurrAnimation, 0), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
+                Graphics g = Graphics.FromImage(upDownImage);
+                g.DrawImage(carsImg, 0, 0, new Rectangle(new Point((carHeight - 31) * (int)player.CurrAnimation, 0), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
+                carPlayerBox.Location = new Point(carPositionX, carPositionY);
+                carPlayerBox.Size = new Size(carWidth, carHeight);
+                carPlayerBox.Image = upDownImage;
             }
         }
+
         private (int x, int y) AdjustPosition((int x, int y) position)
         {
             var adjustedPosition = position;
 
             if (player.CurrAnimation == AnimationPosition.Up)
             {
-                adjustedPosition.x = position.x + carWidth / 2;
-                adjustedPosition.y = position.y - carHeight / 2;
+                adjustedPosition.x = position.x + (carWidth / 2);
+                adjustedPosition.y = position.y - (carHeight / 3);
             }
             else if (player.CurrAnimation == AnimationPosition.Down)
             {
-                adjustedPosition.x = position.x + carWidth / 2;
-                adjustedPosition.y = position.y - carHeight / 2;
+                adjustedPosition.x = position.x + (carWidth / 2);
+                adjustedPosition.y = position.y - (carHeight / 3);
             }
             else
             {
@@ -160,25 +206,52 @@ namespace Platformer
 
             return adjustedPosition;
         }
-        private void PaintEnemy(Graphics gr, int currY)
+        private void PaintEnemy(int currY)
         {
-
             this.currY = currY;
-            int FirstCarPositionX = 25 * SectionSizePixel;
-            int FirstCarPositionY = 21 * SectionSizePixel;
-            int SecondCarPositionX = 26 * SectionSizePixel;
-            int SecondCarPositionY = 30 * SectionSizePixel;
-            int ThirdCarPositionX = 26 * SectionSizePixel;
-            int ThirdCarPositionY = 40 * SectionSizePixel;
 
-            gr.DrawImage(player.spritesAnimation, FirstCarPositionX + delta.X, FirstCarPositionY + delta.Y - currY, new Rectangle(new Point(68, carHeight), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
-            gr.DrawImage(player.spritesAnimation, SecondCarPositionX + delta.X, SecondCarPositionY + delta.Y - currY, new Rectangle(new Point(68, carHeight), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
-            gr.DrawImage(player.spritesAnimation, ThirdCarPositionX + delta.X, ThirdCarPositionY + delta.Y - currY, new Rectangle(new Point(68, carHeight), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
+            int firstCarPositionX = 24 * SectionSizePixel;
+            int firstCarPositionY = 21 * SectionSizePixel;
+            int secondCarPositionX = 25 * SectionSizePixel;
+            int secondCarPositionY = 30 * SectionSizePixel;
+            int thirdCarPositionX = 25 * SectionSizePixel;
+            int thirdCarPositionY = 40 * SectionSizePixel;
+            int fourthCarPositionX = 24 * SectionSizePixel;
+            int fourthCarPositionY = 34 * SectionSizePixel;
+
+            Image UpDown = new Bitmap(carWidth, carHeight);
+            Graphics g = Graphics.FromImage(UpDown);
+            g.DrawImage(carsImg, 0, 0, new Rectangle(new Point(41, 170), new Size(carWidth, carHeight)), GraphicsUnit.Pixel);
+
+            for (int i = 0; i < carEnemyBox.Length; i++)
+            {
+                if (i == 0)
+                {
+                    carEnemyBox[i].Location = new Point(firstCarPositionX + delta.X, firstCarPositionY + delta.Y - currY);
+                }
+                else if (i == 1)
+                {
+                    carEnemyBox[i].Location = new Point(secondCarPositionX + delta.X, secondCarPositionY + delta.Y - currY);
+                }
+                else if (i == 2)
+                {
+                    carEnemyBox[i].Location = new Point(thirdCarPositionX + delta.X, thirdCarPositionY + delta.Y - currY);
+                }
+                else if (i == 3)
+                {
+                    carEnemyBox[i].Location = new Point(fourthCarPositionX + delta.X, fourthCarPositionY + delta.Y - currY);
+                }
+                else
+                {
+                    return;
+                }
+                carEnemyBox[i].Image = UpDown;
+            }
         }
 
         private void EnemySpeedTimer_Tick(object sender, EventArgs e)
         {
-            if (currY >= 0 && currY < 2 * 22 * SectionSizePixel)
+            if (currY >= 0 && currY < 2 * 21 * SectionSizePixel)
             {
                 currY += 20;
             }
@@ -192,23 +265,24 @@ namespace Platformer
         private void OnPaint(object sender, PaintEventArgs e)
         {
             Graphics gr = e.Graphics;
+
             CreateMap(gr);
-            PlayAnimation(gr);
-            PaintEnemy(gr, currY);
+            PlayAnimation();
+            PaintEnemy(currY);
         }
 
         private void Pause()
         {
             if (MoneyTimer.Enabled == true)
             {
-                this.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.GameKeyDown);
+                this.KeyDown -= new KeyEventHandler(this.GameKeyDown);
                 EnemySpeedTimer.Enabled = false;
                 MovementTimer.Enabled = false;
                 MoneyTimer.Enabled = false;
             }
             else if (MoneyTimer.Enabled == false)
             {
-                this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameKeyDown);
+                this.KeyDown += new KeyEventHandler(this.GameKeyDown);
                 EnemySpeedTimer.Enabled = Enabled;
                 MovementTimer.Enabled = Enabled;
                 MoneyTimer.Enabled = Enabled;
@@ -225,6 +299,7 @@ namespace Platformer
             switch (e.KeyCode.ToString())
             {
                 case "D":
+                    MoneyLoss();
                     player.CurrAnimation = AnimationPosition.Right;
 
                     if (player.x < MapWidth - base.Width / 2)
@@ -239,6 +314,7 @@ namespace Platformer
                     }
                     break;
                 case "A":
+                    MoneyLoss();
                     player.CurrAnimation = AnimationPosition.Left;
 
                     if (player.x > 0)
@@ -251,6 +327,7 @@ namespace Platformer
                     }
                     break;
                 case "W":
+                    MoneyLoss();
                     player.CurrAnimation = AnimationPosition.Up;
 
                     if (player.y > 0)
@@ -264,6 +341,7 @@ namespace Platformer
                     }
                     break;
                 case "S":
+                    MoneyLoss();
                     player.CurrAnimation = AnimationPosition.Down;
                     if (player.y < MapHeight - Height / 2)
                     {
@@ -283,27 +361,5 @@ namespace Platformer
             }
         }
 
-        private void Label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void GameLoad(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AlertGrass_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

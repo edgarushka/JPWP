@@ -5,7 +5,6 @@ namespace Platformer
 {
     public static class Buttons
     {
-    
         public static void StartBoxMouseHover(object sender, EventArgs e)
         {
             var startBox = (PictureBox)sender;

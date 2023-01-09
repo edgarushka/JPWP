@@ -103,9 +103,9 @@ namespace Platformer.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap models {
+        internal static System.Drawing.Bitmap models2 {
             get {
-                object obj = ResourceManager.GetObject("models", resourceCulture);
+                object obj = ResourceManager.GetObject("models2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,26 +136,6 @@ namespace Platformer.Properties {
         internal static System.Drawing.Bitmap option_normal {
             get {
                 object obj = ResourceManager.GetObject("option_normal", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap sound_off {
-            get {
-                object obj = ResourceManager.GetObject("sound off", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap sound_on {
-            get {
-                object obj = ResourceManager.GetObject("sound on", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

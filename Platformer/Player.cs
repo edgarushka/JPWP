@@ -9,14 +9,16 @@ namespace Platformer
         public Size scale;
         private AnimationPosition currAnimation = AnimationPosition.Right;
 
-        // Properties c#
-        public AnimationPosition CurrAnimation { 
+        //Properties c#
+        public AnimationPosition CurrAnimation
+        {
             get => currAnimation;
-            set{
+            set
+            {
                 currAnimation = value;
             }
         }
-        
+
         public Player(Size _scale,int x,int y,Image spriteAnimation)
         {
             this.scale = _scale;
