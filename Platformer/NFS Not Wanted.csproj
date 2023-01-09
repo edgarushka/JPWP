@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Car-Red.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DocumentFormat.OpenXml, Version=2.19.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.19.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
@@ -58,6 +61,11 @@
     </Compile>
     <Compile Include="Options.Designer.cs">
       <DependentUpon>Options.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Win.cs">
       <SubType>Form</SubType>
@@ -103,27 +111,32 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\A-5-skrzyzowanie-drog.png" />
+    <None Include="Resources\A-7-ustap-pierwszenstwa.png" />
+    <None Include="Resources\B-20-stop.png" />
+    <None Include="Resources\B-21-zakaz-skrecania-w-lewo.png" />
+    <None Include="Resources\C-2-nakaz-jazdy-w-prawo-za-znakiem.png" />
+    <None Include="Resources\D-1-droga-z-pierwszenstwem.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Car-Red.ico" />
+    <Content Include="Resources\Car-Red.ico" />
     <Content Include="Resources\exit_hover.png" />
     <Content Include="Resources\exit_normal.png" />
+    <Content Include="Resources\hhhhhhhhhhhhhhhh.wav" />
     <Content Include="Resources\map.png" />
     <Content Include="Resources\menu.png" />
     <Content Include="Resources\models2.png" />
     <Content Include="Resources\option_hover.png" />
+    <Content Include="Resources\option_menu.png" />
     <Content Include="Resources\option_normal.png" />
     <Content Include="Resources\start_hover.png" />
     <Content Include="Resources\start_normal.png" />

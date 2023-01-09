@@ -63,6 +63,66 @@ namespace Platformer.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap A_5_skrzyzowanie_drog {
+            get {
+                object obj = ResourceManager.GetObject("A-5-skrzyzowanie-drog", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap A_7_ustap_pierwszenstwa {
+            get {
+                object obj = ResourceManager.GetObject("A-7-ustap-pierwszenstwa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap B_20_stop {
+            get {
+                object obj = ResourceManager.GetObject("B-20-stop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap B_21_zakaz_skrecania_w_lewo {
+            get {
+                object obj = ResourceManager.GetObject("B-21-zakaz-skrecania-w-lewo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap C_2_nakaz_jazdy_w_prawo_za_znakiem {
+            get {
+                object obj = ResourceManager.GetObject("C-2-nakaz-jazdy-w-prawo-za-znakiem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap D_1_droga_z_pierwszenstwem {
+            get {
+                object obj = ResourceManager.GetObject("D-1-droga-z-pierwszenstwem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap exit_hover {
             get {
                 object obj = ResourceManager.GetObject("exit_hover", resourceCulture);

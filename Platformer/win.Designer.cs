@@ -62,7 +62,7 @@
             // 
             this.loseLabel.AutoSize = true;
             this.loseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.loseLabel.Location = new System.Drawing.Point(11, 129);
+            this.loseLabel.Location = new System.Drawing.Point(31, 129);
             this.loseLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.loseLabel.Name = "loseLabel";
             this.loseLabel.Size = new System.Drawing.Size(118, 42);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.MoneyTimer = new System.Windows.Forms.Timer(this.components);
             this.MovementTimer = new System.Windows.Forms.Timer(this.components);
             this.EnemySpeedTimer = new System.Windows.Forms.Timer(this.components);
@@ -68,7 +69,7 @@
             this.moneyLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.moneyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.moneyLabel.ForeColor = System.Drawing.Color.Green;
-            this.moneyLabel.Location = new System.Drawing.Point(1097, 53);
+            this.moneyLabel.Location = new System.Drawing.Point(1124, 43);
             this.moneyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.moneyLabel.Name = "moneyLabel";
             this.moneyLabel.Size = new System.Drawing.Size(125, 38);
@@ -87,7 +88,7 @@
             this.menuPanel.Controls.Add(this.exitBox);
             this.menuPanel.Controls.Add(this.optionBox);
             this.menuPanel.Controls.Add(this.startBox);
-            this.menuPanel.Location = new System.Drawing.Point(499, 150);
+            this.menuPanel.Location = new System.Drawing.Point(489, 140);
             this.menuPanel.Margin = new System.Windows.Forms.Padding(2);
             this.menuPanel.Name = "menuPanel";
             this.menuPanel.Size = new System.Drawing.Size(300, 407);
@@ -150,7 +151,7 @@
             this.escMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.escMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.escMenu.ForeColor = System.Drawing.Color.Green;
-            this.escMenu.Location = new System.Drawing.Point(21, 53);
+            this.escMenu.Location = new System.Drawing.Point(11, 43);
             this.escMenu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.escMenu.Name = "escMenu";
             this.escMenu.Size = new System.Drawing.Size(203, 38);
@@ -166,7 +167,7 @@
             this.alertGrass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.alertGrass.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.alertGrass.ForeColor = System.Drawing.Color.Red;
-            this.alertGrass.Location = new System.Drawing.Point(399, 19);
+            this.alertGrass.Location = new System.Drawing.Point(389, 9);
             this.alertGrass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.alertGrass.Name = "alertGrass";
             this.alertGrass.Size = new System.Drawing.Size(565, 38);
@@ -183,12 +184,12 @@
             this.wrongSignLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.wrongSignLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.wrongSignLabel.ForeColor = System.Drawing.Color.Red;
-            this.wrongSignLabel.Location = new System.Drawing.Point(403, 62);
+            this.wrongSignLabel.Location = new System.Drawing.Point(362, 56);
             this.wrongSignLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.wrongSignLabel.Name = "wrongSignLabel";
-            this.wrongSignLabel.Size = new System.Drawing.Size(557, 38);
+            this.wrongSignLabel.Size = new System.Drawing.Size(617, 38);
             this.wrongSignLabel.TabIndex = 9;
-            this.wrongSignLabel.Text = "NIE WOLNO JECHAĆ W TĘ STRONĘ";
+            this.wrongSignLabel.Text = "NIE WOLNO JECHAĆ W TYM KIERUNKU";
             this.wrongSignLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.wrongSignLabel.Visible = false;
             // 
@@ -197,18 +198,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1260, 677);
+            this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.wrongSignLabel);
             this.Controls.Add(this.alertGrass);
             this.Controls.Add(this.escMenu);
             this.Controls.Add(this.menuPanel);
             this.Controls.Add(this.moneyLabel);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(1280, 720);
             this.Name = "Game";
-            this.Padding = new System.Windows.Forms.Padding(10);
-            this.ShowIcon = false;
             this.Text = "Need For Speed Not Wanted";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaint);
             this.menuPanel.ResumeLayout(false);

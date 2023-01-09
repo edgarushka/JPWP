@@ -9,7 +9,6 @@ namespace Platformer
         public Size scale;
         private AnimationPosition currAnimation = AnimationPosition.Right;
 
-        //Properties c#
         public AnimationPosition CurrAnimation
         {
             get => currAnimation;
@@ -28,27 +27,22 @@ namespace Platformer
         }
         public void Left()
         {
-           
             x -= Game.Speed;
-            //playerPic.Location = new Point(playerPic.Location.X - 1, playerPic.Location.Y);
         }
 
         public void Right()
         {
             x += Game.Speed;            
-            //playerPic.Location = new Point(playerPic.Location.X + 1, playerPic.Location.Y);
         }
 
         public void Up()
         {
             y -= Game.Speed;
-            //playerPic.Location = new Point(playerPic.Location.X , playerPic.Location.Y-1);
         }
 
         public void Down()
         {
             y += Game.Speed;
-            //playerPic.Location = new Point(playerPic.Location.X, playerPic.Location.Y+1);
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Platformer
         {
             this.money = money;
             InitializeComponent();
-            this.exitBox.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
-            this.exitBox.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
-            this.exitBox.Click += new System.EventHandler(Buttons.ExitBoxClick);
+            this.exitBox.MouseHover += new EventHandler(Buttons.ExitBoxMouseHover);
+            this.exitBox.MouseLeave += new EventHandler(Buttons.ExitBoxMouseLeave);
+            this.exitBox.Click += new EventHandler(ExitBoxClick);
 
             if (money <= 0)
             {
@@ -29,6 +29,10 @@ namespace Platformer
         {
             winLabel.Text = "Wygrałeś z " + money + "$!";
             loseLabel.Text = "FAIL! Spróbuj jeszcze raz";
+        }
+        private void ExitBoxClick(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
 
     }

@@ -9,8 +9,8 @@ namespace Platformer
         Image carsImg;
         Bitmap mapImg;
         Player player;
-        PictureBox[] carEnemyBox;
-        PictureBox carPlayerBox = new PictureBox();
+        private PictureBox[] carEnemyBox;
+        private PictureBox carPlayerBox = new PictureBox();
 
         public const int Speed = 30;
         const int MapWidth = 5120;
@@ -18,31 +18,21 @@ namespace Platformer
         const int SectionSizePixel = 128;
         public int money;
         public int currY;
-        int[,] map;
+        readonly int[,] map;
 
         Point delta;
 
-        private int carWidth = 111;
-        private int carHeight = 218;
+        private readonly int carWidth = 111;
+        private readonly int carHeight = 218;
         public Game()
         {
             InitializeComponent();
-            this.exitBox.MouseHover += new System.EventHandler(Buttons.ExitBoxMouseHover);
-            this.exitBox.MouseLeave += new System.EventHandler(Buttons.ExitBoxMouseLeave);
-            this.exitBox.Click += new System.EventHandler(Buttons.ExitBoxClick);
-            this.startBox.MouseHover += new System.EventHandler(Buttons.StartBoxMouseHover);
-            this.startBox.MouseLeave += new System.EventHandler(Buttons.StartBoxMouseLeave);
-            this.optionBox.MouseHover += new System.EventHandler(Buttons.OptionBoxMouseHover);
-            this.optionBox.MouseLeave += new System.EventHandler(Buttons.OptionBoxMouseLeave);
-            this.optionBox.Click += new System.EventHandler(Buttons.OptionsBoxClick);
-            this.zasadyBox.MouseHover += new System.EventHandler(Buttons.ZasadyBoxMouseHover);
-            this.zasadyBox.MouseLeave += new System.EventHandler(Buttons.ZasadyBoxMouseLeave);
-            this.zasadyBox.Click += new System.EventHandler(Buttons.ZasadyBoxClick);
 
             money = 10000;
             currY = 0;
 
             carEnemyBox = new PictureBox[4];
+
             for (int i = 0; i < carEnemyBox.Length; i++)
             {
                 carEnemyBox[i] = new PictureBox();
@@ -50,9 +40,9 @@ namespace Platformer
                 carEnemyBox[i].BackColor = Color.Gray;
                 carEnemyBox[i].Size = new Size(carWidth, carHeight);
             }
+
             carPlayerBox.BackColor = Color.Gray;
             Controls.Add(carPlayerBox);
-
 
             carsImg = Properties.Resources.models2;
             mapImg = Properties.Resources.map;
@@ -65,9 +55,9 @@ namespace Platformer
             this.ClientSize.Height / 2 - menuPanel.Size.Height / 2);
 
             map = new int[22, 40]{
-            { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1 },
-            { 0,0,0,0,0,0,0,0,0,0,0,3,0,0,3,0,0,3,1,1,3,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
-            { 0,0,0,0,0,0,0,0,0,0,0,3,0,0,3,0,0,3,1,1,3,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
+            { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,4,4,4,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            { 4,0,0,0,0,0,0,0,0,0,0,3,0,0,3,0,0,3,1,1,3,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
+            { 4,0,0,0,0,0,0,0,0,0,0,3,0,0,3,0,0,3,1,1,3,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
             { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
             { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
             { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
@@ -76,19 +66,30 @@ namespace Platformer
             { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
             { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
             { 1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
-            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
+            { 4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
             { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
             { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
             { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,3,1,1,1,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1 },
             { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,3,1,1,1,1,1,1,0,0,0,1,1,1,1,2,2,1,1,1,1,1,1,1 },
-            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
-            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            { 4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            { 4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
-            { 1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
-            { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            { 1,1,4,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,4,4,1,1,1,1,1,1,1,1,1,1,1,1,1 },
             };
 
+            exitBox.MouseHover += new EventHandler(Buttons.ExitBoxMouseHover);
+            exitBox.MouseLeave += new EventHandler(Buttons.ExitBoxMouseLeave);
+            exitBox.Click += new EventHandler(Buttons.ExitBoxClick);
+            startBox.MouseHover += new EventHandler(Buttons.StartBoxMouseHover);
+            startBox.MouseLeave += new EventHandler(Buttons.StartBoxMouseLeave);
+            optionBox.MouseHover += new EventHandler(Buttons.OptionBoxMouseHover);
+            optionBox.MouseLeave += new EventHandler(Buttons.OptionBoxMouseLeave);
+            optionBox.Click += new EventHandler(Buttons.OptionsBoxClick);
+            zasadyBox.MouseHover += new EventHandler(Buttons.ZasadyBoxMouseHover);
+            zasadyBox.MouseLeave += new EventHandler(Buttons.ZasadyBoxMouseLeave);
+            zasadyBox.Click += new EventHandler(Buttons.ZasadyBoxClick);
         }
         private void MoneyLoss()
         {
@@ -109,6 +110,10 @@ namespace Platformer
                 {
                     money -= 500;
                     wrongSignLabel.Visible = true;
+                }               
+                else if (map[(player.y) / SectionSizePixel, (player.x + carWidth) / SectionSizePixel] == 4)
+                {
+                    wrongSignLabel.Visible = true;
                 }
                 else
                 {
@@ -119,8 +124,7 @@ namespace Platformer
                 {
                     if (carPlayerBox.Bounds.IntersectsWith(carEnemyBox[i].Bounds))
                     {
-                        menuPanel.Show();
-                        Pause();
+                        money = 0;
                     }
                 }
             }
