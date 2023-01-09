@@ -84,7 +84,6 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.win_Load);
             ((System.ComponentModel.ISupportInitialize)(this.exitBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

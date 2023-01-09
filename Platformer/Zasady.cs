@@ -5,7 +5,9 @@ namespace Platformer
 {
     public partial class Zasady : Form
     {
-        
+        /// <summary>
+        /// Zasady window
+        /// </summary>
         public Zasady()
         {
             InitializeComponent();
@@ -19,7 +21,11 @@ namespace Platformer
             fifthSign.Text = "Nakaz jazdy w prawo za znakiem";
             sixthSign.Text = "Droga z pierwszeństwem";
         }
-
+        /// <summary>
+        /// Result of the clicking at exit box at Win window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitBoxClick(object sender, EventArgs e)
         {
             this.Close();

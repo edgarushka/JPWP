@@ -3,6 +3,9 @@ using System.Windows.Forms;
 
 namespace Platformer
 {
+    /// <summary>
+    /// Realises clicking at buttons
+    /// </summary>
     public static class Buttons
     {
         public static void StartBoxMouseHover(object sender, EventArgs e)

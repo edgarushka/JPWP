@@ -9,6 +9,7 @@ namespace Platformer
         Image carsImg;
         Bitmap mapImg;
         Player player;
+
         private PictureBox[] carEnemyBox;
         private PictureBox carPlayerBox = new PictureBox();
 
@@ -21,16 +22,20 @@ namespace Platformer
         readonly int[,] map;
 
         Point delta;
-
+ 
         private readonly int carWidth = 111;
         private readonly int carHeight = 218;
+
+        /// <summary>
+        /// Main function
+        /// </summary>
         public Game()
         {
             InitializeComponent();
 
             money = 10000;
             currY = 0;
-
+            
             carEnemyBox = new PictureBox[4];
 
             for (int i = 0; i < carEnemyBox.Length; i++)
@@ -91,6 +96,10 @@ namespace Platformer
             zasadyBox.MouseLeave += new EventHandler(Buttons.ZasadyBoxMouseLeave);
             zasadyBox.Click += new EventHandler(Buttons.ZasadyBoxClick);
         }
+
+        /// <summary>
+        /// Function that determines end of the game and remaining amount of money
+        /// </summary>
         private void MoneyLoss()
         {
             Win win = new Win(money);
@@ -134,17 +143,27 @@ namespace Platformer
                 win.Show();
             }
         }
+        /// <summary>
+        /// Invalidation of previous objects
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateMovement(object sender, EventArgs e)
         {
             this.Invalidate();
             moneyLabel.Text = money.ToString() + "$";
         }
-
+        /// <summary>
+        /// Creates map
+        /// </summary>
+        /// <param name="gr"></param>
         private void CreateMap(Graphics gr)
         {
             gr.DrawImage(mapImg, delta.X, delta.Y, MapWidth, MapHeight);
         }
-
+        /// <summary>
+        /// Creates and animates picture of player's car
+        /// </summary>
         private void PlayAnimation()
         {
             Image leftRightImage = new Bitmap(carHeight, carWidth);
@@ -188,7 +207,11 @@ namespace Platformer
                 carPlayerBox.Image = upDownImage;
             }
         }
-
+        /// <summary>
+        /// Changes the center of rotation of the car
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         private (int x, int y) AdjustPosition((int x, int y) position)
         {
             var adjustedPosition = position;
@@ -210,6 +233,10 @@ namespace Platformer
 
             return adjustedPosition;
         }
+        /// <summary>
+        /// Creates other cars
+        /// </summary>
+        /// <param name="currY"></param>
         private void PaintEnemy(int currY)
         {
             this.currY = currY;
@@ -252,7 +279,11 @@ namespace Platformer
                 carEnemyBox[i].Image = UpDown;
             }
         }
-
+        /// <summary>
+        /// Shift of the other cars
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EnemySpeedTimer_Tick(object sender, EventArgs e)
         {
             if (currY >= 0 && currY < 2 * 21 * SectionSizePixel)
@@ -265,7 +296,11 @@ namespace Platformer
             }
         }
 
-
+        /// <summary>
+        /// Creating all the graphics
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnPaint(object sender, PaintEventArgs e)
         {
             Graphics gr = e.Graphics;
@@ -274,7 +309,9 @@ namespace Platformer
             PlayAnimation();
             PaintEnemy(currY);
         }
-
+        /// <summary>
+        /// Pause
+        /// </summary>
         private void Pause()
         {
             if (MoneyTimer.Enabled == true)
@@ -292,12 +329,21 @@ namespace Platformer
                 MoneyTimer.Enabled = Enabled;
             }
         }
+        /// <summary>
+        /// Result of the clicking start box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StartBoxClick(object sender, EventArgs e)
         {
             menuPanel.Hide();
             Pause();
         }
-
+        /// <summary>
+        /// Keyboard and camera
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GameKeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode.ToString())
